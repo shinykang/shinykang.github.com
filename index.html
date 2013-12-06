@@ -1,20 +1,276 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>ÿ�춼�����˽�</title>
-    <link rel="shortcut icon" href="QTS.ico" type="image/x-icon" />
-    <meta name="description" content="123" />
+    <meta charset="utf-8" />
+    <title></title>
 </head>
 <body>
-    <center id="meiguihua">
-        <div style="font-size:40px;color:red;">亲爱的,我爱你</div>
-        <iframe width="600px" scrolling="no" height="520px" frameborder="0" noresize="noresize"
-            src="javascript:'<!doctype html>\n<html>\n\t<head>\n\t\t<title>JS1k, 1k demo submission [1022]</title>\n\t\t<meta charset=&quot;utf-8&quot; />\n\t</head>\n\t<body>\n\t\t<canvas id=&quot;c&quot;></canvas>\n\t\t<script>\n\t\t\tvar b = document.body;\n\t\t\tvar c = document.getElementsByTagName(\'canvas\')[0];\n\t\t\tvar a = c.getContext(\'2d\');\n\t\t\tdocument.body.clientWidth; // fix bug in webkit: http://qfox.nl/weblog/218\n\t\t</script>\n\t\t<script>\n// start of submission //\nwith(m=Math)C=cos,S=sin,P=pow,R=random;c.width=c.height=f=500;h=-250;function p(a,b,c){if(c>60)return[S(a*7)*(13+5/(.2+P(b*4,4)))-S(b)*50,b*f+50,625+C(a*7)*(13+5/(.2+P(b*4,4)))+b*400,a*1-b/2,a];A=a*2-1;B=b*2-1;if(A*A+B*B<1){if(c>37){n=(j=c&1)%3F6:4;o=.5/(a+.01)+C(b*125)*3-a*300;w=b*h;return[o*C(n)+w*S(n)+j*610-390,o*S(n)-w*C(n)+550-j*350,1180+C(B+A)*99-j*300,.4-a*.1+P(1-B*B,-h*6)*.15-a*b*.4+C(a+b)/5+P(C((o*(a+1)+(B>0%3Fw:-w))/25),30)*.1*(1-B*B),o/1e3+.7-o*w*3e-6]}if(c>32){c=c*1.16-.15;o=a*45-20;w=b*b*h;z=o*S(c)+w*C(c)+620;return[o*C(c)-w*S(c),28+C(B*.5)*99-b*b*b*60-z/2-h,z,(b*b*.3+P((1-(A*A)),7)*.15+.3)*b,b*.7]}o=A*(2-b)*(80-c*2);w=99-C(A)*120-C(b)*(-h-c*4.9)+C(P(1-b,7))*50+c*2;z=o*S(c)+w*C(c)+700;return[o*C(c)-w*S(c),B*99-C(P(b, 7))*50-c/3-z/1.35+450,z,(1-b/1.2)*.9+a*.1, P((1-b),20)/4+.05]}}setInterval(\'for(i=0;i<1e4;i++)if(s=p(R(),R(),i%2546/.74)){z=s[2];x=~~(s[0]*f/z-h);y=~~(s[1]*f/z-h);if(!m[q=y*f+x]|m[q]>z)m[q]=z,a.fillStyle=&quot;rgb(&quot;+~(s[3]*h)+&quot;,&quot;+~(s[4]*h)+&quot;,&quot;+~(s[3]*s[3]*-80)+&quot;)&quot;,a.fillRect(x,y,1,1)}\',0)\n// end of submission //\n\t\t</script>\n\t</body>\n</html>'">
-        </iframe>
-        <div>
-            <a title="ÿ�춼�����˽ڣ������ȹ�ÿһ��" style=" color:Gray;font-size:30px;" href="javascript:window.open('http://www.x-woods.com/service/book/x.aspx?id=213300');window.close();">
-                ���ͣ����ͣ�...</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-       </br></br></br></br><div><a href="http://418493429.qzone.qq.com" title="��ϵ�ۿۣ�653693115/418493429" style="font-size:8px;">ף������</a></div>
+    <center>
+		<canvas id="myCanvas" width="240" height="240" style="border:1px solid #d3d3d3;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<div>
+			<button onclick="startUserGame();" style=" width:100px; height:50px;">
+				自己玩
+			</button>
+			<button onclick="startComputerGame();" style=" width:100px; height:50px;">
+				电脑玩
+			</button>
+		</div>
+		<div >
+			<span >长度:</span>
+			<span id="score">0</span>
+		</div>
+		<div >
+			<span id="dead"></span>
+		</div>
     </center>
+    <script>
+        var ctx = document.getElementById("myCanvas").getContext("2d");
+        //方向
+        up = 38, down = 40, left = 37, right = 39;
+        //蛇
+        snake = [{
+            x: 10,
+            y: 9
+        }, {
+            x: 10,
+            y: 8
+        }];
+        //co表示蛇前进的方向，默认向下
+        co = down;
+        //自动寻路
+        auto = true;
+        //flood食物
+        flood = null;
+        var score = document.getElementById("score");
+        var dead = document.getElementById("dead");
+        //给蛇加上阴影效果
+        ctx.shadowBlur = 20, ctx.shadowColor = "black";
+        function init() {
+            window.clearInterval(id)
+            ctx.clearRect(0, 0, 240, 240);
+            snake = [{
+                x: 10,
+                y: 9
+            }, {
+                x: 10,
+                y: 8
+            }];
+            co = down;
+            flood = null;
+            dead.innerHTML = '';
+        }
+
+        function startUserGame() {
+            //循环，间隔为100毫秒
+            init();
+            auto = false;
+            id = setInterval(moveSnake, 100);
+        }
+
+        function startComputerGame() {
+            if (auto)
+                return;
+            //循环，间隔为30毫秒
+            init();
+            auto = true;
+            setInterval(moveSnake, 30);
+        }
+
+        function deadMan(head) {
+            if (check(head, 0)) {
+                return true;
+            }
+            if (head.x < 0 || head.x >= 24 || head.y < 0 || head.y >= 24) {
+                return true;
+            }
+            return false
+        }
+
+        var id = setInterval(moveSnake, 30);
+
+        function moveSnake() {
+            //游戏是否已经结束
+            if (deadMan(snake[0])) {
+                window.clearInterval(id);
+                dead.innerHTML = '扑街啦~~';
+                return;
+            }
+
+            //如果有食物，则根据蛇前进的方向判断是否吃到了食物，并且将蛇数组中最后一个元素换到首部
+            //自动选择方向
+            if (auto) {
+                co = updateDirection(flood, snake[0], co);
+            }
+            flood != null && (
+            //下
+					(co == down && snake[0].x == flood.x && snake[0].y + 1 == flood.y)
+            //上
+					|| (co == up && snake[0].x == flood.x && snake[0].y - 1 == flood.y)
+            /**左*/ || (co == left && snake[0].x - 1 == flood.x && snake[0].y == flood.y)
+            /**右*/ || (co == right && snake[0].x + 1 == flood.x && snake[0].y == flood.y))
+            //吃了食物
+				? (snake.unshift(flood), flood = null)
+            //只是移动
+				: (snake.unshift(snake.pop()));
+            //根据方向，重新设定蛇数组首元素的坐标，从而进行移动
+            (co == 40 || co == 38) ? (snake[0].x = snake[1].x, snake[0].y = snake[1].y + (co == 40 ? 1 : -1)) : (snake[0].x = snake[1].x + (co == 39 ? 1 : -1), snake[0].y = snake[1].y);
+
+            //清空屏幕
+            ctx.clearRect(0, 0, 240, 240);
+            //如果有食物，则绘制食物
+            if (flood)
+                ctx.fillRect(flood.x * 10, flood.y * 10, 10, 10);
+            //如果没有食物，则在随机位置上加入一粒食物
+            while (flood == null || check(flood))
+                flood = {
+                    y: (Math.random() * 24 >>> 0),
+                    x: (Math.random() * 24 >>> 0)
+                };
+            //绘制蛇
+            for (var i = 0; i < snake.length; i++)
+                ctx.fillRect(snake[i].x * 10, snake[i].y * 10, 10, 10);
+            //分数
+            score.innerHTML = snake.length;
+
+            //判断游戏是否结束
+            if (deadMan(snake[0])) {
+                window.clearInterval(id);
+                dead.innerHTML = '扑街啦~~';
+                return;
+            }
+            //alert("game over\nYou get [" + (snake.length - 2) + "]");
+        }
+
+        //加入键盘事件，用方向键来控制蛇前进的方向
+        document.onkeyup = function (event) {
+            co = event.keyCode >= 37 && event.keyCode <= 40 && (Math.abs(event.keyCode - co) != 2) ? event.keyCode : co;
+        }
+        //判断指定位置是否与蛇重叠
+
+        function check(flood, j) {
+            for (var i = 0; i < snake.length; i++)
+                if (j != i && snake[i].x == flood.x && snake[i].y == flood.y)
+                    return true;
+            return false;
+        }
+
+        function updateDirection(flood, snake, co) {
+            if (!flood)
+                return co;
+            dir = [];
+            //向着食物前进
+            //横向模式
+            if (co == left || co == right) {
+                flood.x > snake.x ? (dir[0] = right, dir[2] = left) : (dir[0] = left, dir[2] = right);
+                flood.y > snake.y ? (dir[1] = down, dir[3] = up) : (dir[1] = up, dir[3] = down)
+            }
+            //树向模式
+            if (co == up || co == down) {
+                flood.y > snake.y ? (dir[0] = down, dir[2] = up) : (dir[0] = up, dir[2] = down)
+                flood.x > snake.x ? (dir[1] = right, dir[3] = left) : (dir[1] = left, dir[3] = right);
+            }
+            //尝试各个方向
+            for (d in dir) {
+                if (isGoodDirection(dir[d]))
+                    return dir[d];
+            }
+            return co;
+        }
+
+        function isGoodDirection(d) {
+            //跟前进方向相反了.
+            if (Math.abs(d - co) == 2)
+                return false;
+            //下一步的位置
+            next = getNext(d);
+            //下一步会死掉
+            if (deadMan(next))
+                return false;
+            //按照前进方向的下一步是
+            next = getNext(co);
+            if (check(next, 0) && isDeadEnd(next, d)) {
+                return false;
+            }
+            return true;
+        }
+
+        //根据给定的方向取下一步的位置
+        function getNext(d) {
+            next = {
+                x: 0,
+                y: 0
+            };
+            switch (d) {
+                case up:
+                    next.x = snake[0].x;
+                    next.y = snake[0].y - 1;
+                    break;
+                case down:
+                    next.x = snake[0].x;
+                    next.y = snake[0].y + 1;
+                    break;
+                case left:
+                    next.x = snake[0].x - 1;
+                    next.y = snake[0].y;
+                    break;
+                case right:
+                    next.x = snake[0].x + 1;
+                    next.y = snake[0].y;
+                    break;
+            }
+            return next;
+        }
+
+        function kun() {
+
+            //身体形成的闭环会把自己困死
+            if (co == up || co == down) {
+                sum = 0;
+                //sum > 0说明蛇身大部分在蛇头右边
+                for (i in snake) {
+                    snake[i].x >= snake[0].x ? sum++ : sum--;
+                }
+                if (d == right && sum > 0)
+                    return true;
+                if (d == left && sum < 0)
+                    return true;
+            }
+            if (co == left || co == right) {
+                sum = 0;
+                //sum > 0说明蛇身大部分在蛇头下边
+                for (i in snake) {
+                    snake[i].y >= snake[0].y ? sum++ : sum--;
+                }
+                if (d == up && sum > 0)
+                    return true;
+                if (d == down && sum < 0)
+                    return true;
+            }
+            return false;
+        }
+
+        function getIndex(node) {
+            for (var i = 0; i < snake.length; i++)
+                if (snake[i].x == node.x && snake[i].y == node.y)
+                    return i;
+        }
+
+        function isDeadEnd(next, d) {
+            i = getIndex(next);
+            node = snake[i - 1];
+            if (d == up && node.y + 1 == next.y)
+                return true;
+            if (d == down && node.y - 1 == next.y)
+                return true;
+            if (d == left && node.x + 1 == next.x)
+                return true;
+            if (d == right && node.x - 1 == next.x)
+                return true;
+            return false;
+        }
+
+    </script>
 </body>
 </html>
