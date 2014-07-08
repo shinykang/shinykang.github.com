@@ -265,6 +265,7 @@ a:focus {
 
 .icowaibu{background-image:url("./img/waibu.png");}
 .icofabu{background-image:url("./img/fabu.png");}
+.iconews{background-image:url("./img/news.png");}
 
 .icoOCR{background-position: 0px -40px;}
 .icoCode{
@@ -537,7 +538,7 @@ a:focus {
 }
 
 #case .list {
-  height: 550px;
+  height: 300px;
 }
 
 #case .list dl {
