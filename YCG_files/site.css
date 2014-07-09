@@ -222,7 +222,7 @@ a:focus {
 #logo{
 	float: left;
 	background:url("./img/logo.png") no-repeat 0px 2px;
-	width: 188px;
+	width: 388px;
 	height: 60px;
 }
 
@@ -324,14 +324,21 @@ a:focus {
 	margin: 0px auto;
 }
 
+.firstPic
+{
+    height: 380px;
+    width: 100%;
+    background-color: black;
+    /*background: url("./img/pic.jpg");*/
+}
+
 #banner{
 	height: 380px;
 	width: 100%;
-	background-color: black;
+	/*background:url("./img/pic.jpg");*/
 }
 
 #banner .section{
-	background:url("./img/pic.jpg") 1px -18px;
 	height: 380px;
 }
 
@@ -506,7 +513,6 @@ a:focus {
 }
 
 #case{
-	
 }
 
 #case .title {
@@ -522,12 +528,11 @@ a:focus {
 }
 
 #case .map .section{
-	background: url("./img/case.png") no-repeat scroll 0 0 transparent;
 	height: 456px;
 }
 
 #case .map{
-	background: url("./img/caseBg.jpg") repeat-x scroll 0 0 transparent;
+	/*background: url("./img/case.png") no-repeat scroll 0 0 transparent;*/
 	height: 421px;
 	overflow: hidden;
 	margin-bottom: 35px;
@@ -590,7 +595,24 @@ a:focus {
 }
 
 #about .map {
-  background: url("./img/comimage.png") repeat-x scroll 0 0 transparent;
+  /*background: url("./img/comimage.png") repeat-x scroll 0 0 transparent;*/
+}
+
+.weixin {
+  background: url("./img/weixinmap.png") no-repeat scroll -23px -19px transparent;
+  position: absolute;
+  top: 290px;
+  right: 0px;
+  width: 280px;
+  height: 330px;
+}
+
+.weixinh2
+{
+    color: #1E1E1E;
+font-size: 18px;
+line-height: 40px;
+margin: 0 43px;
 }
 
 #about .title {

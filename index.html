@@ -6,11 +6,268 @@
     <link rel="icon" href="./YCG_files/img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./YCG_files/img/favicon.ico" type="image/x-icon" />
     <meta content="" name="description">
-    <title>YCG</title>
+    <title>湖北亿创阁科技有限公司</title>
     <link href="./YCG_files/site.css" rel="stylesheet">
     <script type="text/javascript" src="./YCG_files/jquery-1.9.1.min.js"></script>
-    <style type="text/css"></style>
     <script type="text/javascript" src="./YCG_files/bookmarkscroll.js"></script>
+    <style type="text/css">
+        #mainwrapper
+        {
+            font: 10pt normal Arial, sans-serif;
+            height: auto;
+            margin: 0px auto 0 auto;
+            text-align: center;
+            width: 660px;
+        }
+        
+        #mainwrapper .box
+        {
+            border: 5px solid #fff;
+            cursor: pointer;
+            height: 142px;
+            float: left;
+            margin: 5px;
+            position: relative;
+            overflow: hidden;
+            width: 260px;
+            -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+            -moz-box-shadow: 1px 1px 1px 1px #ccc;
+            box-shadow: 1px 1px 1px 1px #ccc;
+        }
+        
+        #mainwrapper .box img
+        {
+            position: absolute;
+            left: 0;
+            -webkit-transition: all 300ms ease-out;
+            -moz-transition: all 300ms ease-out;
+            -o-transition: all 300ms ease-out;
+            -ms-transition: all 300ms ease-out;
+            transition: all 300ms ease-out;
+        }
+        #mainwrapper .box .caption
+        {
+            background-color: antiquewhite;
+            position: absolute;
+            color: darkblue;
+            z-index: 100;
+            -webkit-transition: all 300ms ease-out;
+            -moz-transition: all 300ms ease-out;
+            -o-transition: all 300ms ease-out;
+            -ms-transition: all 300ms ease-out;
+            transition: all 300ms ease-out;
+            left: 0;
+        }
+        #mainwrapper .box .simple-caption
+        {
+            height: 30px;
+            width: 200px;
+            display: block;
+            bottom: -30px;
+            line-height: 25pt;
+            text-align: center;
+        }
+        #mainwrapper .box .full-caption
+        {
+            width: 260px;
+            height: 170px;
+            top: -200px;
+            text-align: left;
+            padding: 15px;
+        }
+        #mainwrapper .box .fade-caption, #mainwrapper .box .scale-caption
+        {
+            opacity: 0;
+            width: 170px;
+            height: 170px;
+            text-align: left;
+            padding: 15px;
+        }
+        /** Caption 4: Slide **/
+        #mainwrapper .box .slide-caption
+        {
+            width: 170px;
+            height: 170px;
+            text-align: left;
+            padding: 15px;
+            left: 200px;
+        }
+        
+        #mainwrapper #box-5.box .rotate-caption
+        {
+            width: 170px;
+            height: 170px;
+            text-align: left;
+            padding: 15px;
+            top: 200px;
+            -moz-transform: rotate(-180deg);
+            -o-transform: rotate(-180deg);
+            -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+        }
+        
+        #mainwrapper .box .rotate
+        {
+            width: 200px;
+            height: 400px;
+            -webkit-transition: all 300ms ease-out;
+            -moz-transition: all 300ms ease-out;
+            -o-transition: all 300ms ease-out;
+            -ms-transition: all 300ms ease-out;
+            transition: all 300ms ease-out;
+        }
+        #mainwrapper .box .scale-caption h3, #mainwrapper .box .scale-caption p
+        {
+            position: relative;
+            left: -200px;
+            width: 170px;
+            -webkit-transition: all 300ms ease-out;
+            -moz-transition: all 300ms ease-out;
+            -o-transition: all 300ms ease-out;
+            -ms-transition: all 300ms ease-out;
+            transition: all 300ms ease-out;
+        }
+        
+        #mainwrapper .box .scale-caption h3
+        {
+            -webkit-transition-delay: 300ms;
+            -moz-transition-delay: 300ms;
+            -o-transition-delay: 300ms;
+            -ms-transition-delay: 300ms;
+            transition-delay: 300ms;
+        }
+        
+        #mainwrapper .box .scale-caption p
+        {
+            -webkit-transition-delay: 500ms;
+            -moz-transition-delay: 500ms;
+            -o-transition-delay: 500ms;
+            -ms-transition-delay: 500ms;
+            transition-delay: 500ms;
+        }
+        #mainwrapper .box:hover .simple-caption
+        {
+            -moz-transform: translateY(-100%);
+            -o-transform: translateY(-100%);
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+        }
+        #mainwrapper .box:hover .full-caption
+        {
+            -moz-transform: translateY(100%);
+            -o-transform: translateY(100%);
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+        }
+        #mainwrapper .box:hover .fade-caption
+        {
+            opacity: 1;
+        }
+        #mainwrapper .box:hover .slide-caption
+        {
+            background-color: rgba(0,0,0,1) !important;
+            -moz-transform: translateX(-100%);
+            -o-transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+            opacity: 1;
+            transform: translateX(-100%);
+        }
+        #mainwrapper .box:hover img#image-4
+        {
+            -moz-transform: translateX(-100%);
+            -o-transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+        }
+        /** Rotate Caption :hover Behaviour **/
+        #mainwrapper .box:hover .rotate
+        {
+            background-color: rgba(0,0,0,1) !important;
+            -moz-transform: rotate(-180deg);
+            -o-transform: rotate(-180deg);
+            -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+        }
+        #mainwrapper .box:hover #image-6
+        {
+            -moz-transform: scale(1.4);
+            -o-transform: scale(1.4);
+            -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+        }
+        #mainwrapper .box:hover .scale-caption h3, #mainwrapper .box:hover .scale-caption p
+        {
+            -moz-transform: translateX(200px);
+            -o-transform: translateX(200px);
+            -webkit-transform: translateX(200px);
+            transform: translateX(200px);
+        }
+        #mainwrapper .box:hover .fade-caption, #mainwrapper .box:hover .scale-caption
+        {
+            opacity: 1;
+        }
+    </style>
+    <style>
+        #pop-box
+        {
+            color: #333;
+            position: absolute;
+            z-index: 9000;
+            display: none;
+        }
+        #pop-box .close
+        {
+            float: right;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            overflow: hidden;
+            padding: 6px 6px 2px 2px;
+        }
+        #pop-box .close:hover
+        {
+            background: url(./YCG_files/img/pop_box_img2.png) 5px 3px no-repeat;
+        }
+        #dialog-overlay
+        {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: -25px;
+            background: #000;
+            opacity: .65;
+            filter: Alpha(Opacity=20);
+            top: 0;
+            left: 0;
+            z-index: 8000;
+            display: none;
+        }
+        #pop-box .title
+        {
+            color: #FFF;
+            margin-left: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        function popupBox(newsname) {
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            var ordertop = document.documentElement.scrollTop + document.documentElement.clientHeight;
+            var orderLeft = (maskWidth / 2) - ($('#pop-box').width() / 2);
+            document.getElementById("iframeNews").src = newsname + ".html";
+            $('#dialog-overlay').css({ height: maskHeight, width: maskWidth }).show(250);
+            $('#pop-box').css({ top: ordertop, left: orderLeft }).show(500);
+        }
+        $(window).resize(function () {
+            if (!$('#pop-box').is(':hidden')) popupBox();
+        });
+
+        function popBoxclose() {
+            $('#dialog-overlay, #pop-box').hide();
+            return false;
+        }
+    </script>
     <script type="text/javascript">
         $(function () {
             var step = [];
@@ -56,6 +313,22 @@
             });
         });
 		</script>
+    <script type="text/javascript">
+        //滚动信息
+        window.onload = function () { marquee('roll_box', 'roll_content', 'roll_temp', '40'); }
+        function marquee(id, id1, id2, speed) {
+            var obj = document.getElementById(id);
+            var obj1 = document.getElementById(id1);
+            var obj2 = document.getElementById(id2);
+            obj2.innerHTML = obj1.innerHTML;
+            function scrolly() { if (obj.scrollTop >= obj1.offsetHeight) { obj.scrollTop = 0; } else { obj.scrollTop++; } }
+            //function scrolly(){if(obj.scrollTop>=obj1.offsetHeight){obj1.offsetHeight-=obj.scrollTop;}else{obj.scrollTop++;}}
+
+            var rollTime = setInterval(scrolly, speed);
+            obj.onmouseover = function () { clearInterval(rollTime); }
+            obj.onmouseout = function () { rollTime = setInterval(scrolly, speed); }
+        } 
+    </script>
 </head>
 <body>
     <div id="homemark" class="mark">
@@ -63,6 +336,8 @@
     <div id="top">
         <div class="section" style="padding: 0px;">
             <div id="logo">
+                <div style="margin-top: 20px; margin-left: 70px; font-size: 20px;">
+                    <b>湖北亿创阁科技有限公司</b></div>
             </div>
             <div id="nav">
                 <a class="active" href="javascript:bookmarkscroll.scrollTo('homemark')">网站首页</a>
@@ -105,301 +380,370 @@
                 <h2>
                     企业新闻</h2>
             </div>
-            <dl style="width: 640px; height: 10px;">
-                <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
-                    margin-top: 5px;"></dt>
-                <dd>
-                    <div style="width: 80%; position: absolute; margin-left: 10%;">
-                        <a href="#" style="font-size: 20px;">亿创阁E食通的相关媒体报道</a>
-                    </div>
-                    <div style="position: absolute; margin-left: 55%;">
-                        <script type="text/javascript">                            document.write((new Date().toLocaleDateString()));</script>
-                    </div>
-                </dd>
-            </dl>
-            <dl style="width: 640px; height: 10px;">
-                <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
-                    margin-top: 5px;"></dt>
-                <dd>
-                    <div style="width: 80%; position: absolute; margin-left: 10%;">
-                        <a href="#" style="font-size: 20px;">胖妹土家菜馆加大二维码点餐的宣传力度</a>
-                    </div>
-                    <div style="position: absolute; margin-left: 55%;">
-                        <script type="text/javascript">                            document.write((new Date().toLocaleDateString()));</script>
-                    </div>
-                </dd>
-            </dl>
-            <dl style="width: 640px; height: 10px;">
-                <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
-                    margin-top: 5px;"></dt>
-                <dd>
-                    <div style="width: 80%; position: absolute; margin-left: 10%;">
-                        <a href="#" style="font-size: 20px;">手机扫一扫，享受时尚点餐方式</a>
-                    </div>
-                    <div style="position: absolute; margin-left: 55%;">
-                        <script type="text/javascript">                            document.write((new Date().toLocaleDateString()));</script>
-                    </div>
-                </dd>
-            </dl>
-            <dl style="width: 640px; height: 10px;">
-                <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
-                    margin-top: 5px;"></dt>
-                <dd>
-                    <div style="width: 80%; position: absolute; margin-left: 10%;">
-                        <a href="#" style="font-size: 20px;">引领时尚点餐（扫二维码）</a>
-                    </div>
-                    <div style="position: absolute; margin-left: 55%;">
-                        <script type="text/javascript">                            document.write((new Date().toLocaleDateString()));</script>
-                    </div>
-                </dd>
-            </dl>
-        </div>
-        <div class="contact">
-            <div class="weibo">
-                <a title="腾讯微博" class="icon icoTencentWeibo" href="http://www.yitrack.com/#" target="_blank">
-                </a><a title="新浪微博" class="icon icoSinaWeibo" href="http://www.yitrack.com/#" target="_blank">
-                </a>
-            </div>
-            <div style="clear: both; height: 0; overflow: hidden; line-header: 0;">
-            </div>
-            <div class="bg bgManual">
-                <div class="manual">
-                    <dl>
-                        <dt>
-                            <h2>
-                                产品帮助手册</h2>
-                            <p>
-                                -- e食通操作方法</p>
-                            <p>
-                                -- e勤通使用一览</p>
-                            <p>
-                                -- 更多...</p>
-                        </dt>
+            <div id="roll_box" style="height: 100px; overflow: hidden;">
+                <div id="roll_content">
+                    <dl style="width: 640px; height: 10px;">
+                        <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
+                            margin-top: 5px;"></dt>
                         <dd>
-                            <a href="http://www.yitrack.com/#" title="亿创阁产品帮助手册"></a>
+                            <div style="width: 80%; position: absolute; margin-left: 10%;">
+                                <a href="javascript:popupBox('news1');" style="font-size: 20px;">亿创阁E食通的相关媒体报道</a>
+                            </div>
+                            <div style="position: absolute; margin-left: 55%;">
+                                <script type="text/javascript">                                    document.write((new Date().toLocaleDateString()));</script>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl style="width: 640px; height: 10px;">
+                        <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
+                            margin-top: 5px;"></dt>
+                        <dd>
+                            <div style="width: 80%; position: absolute; margin-left: 10%;">
+                                <a href="javascript:popupBox('news2');" style="font-size: 20px;">胖妹土家菜馆加大二维码点餐的宣传力度</a>
+                            </div>
+                            <div style="position: absolute; margin-left: 55%;">
+                                <script type="text/javascript">                                    document.write((new Date().toLocaleDateString()));</script>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl style="width: 640px; height: 10px;">
+                        <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
+                            margin-top: 5px;"></dt>
+                        <dd>
+                            <div style="width: 80%; position: absolute; margin-left: 10%;">
+                                <a href="#" style="font-size: 20px;">手机扫一扫，享受时尚点餐方式</a>
+                            </div>
+                            <div style="position: absolute; margin-left: 55%;">
+                                <script type="text/javascript">                                    document.write((new Date().toLocaleDateString()));</script>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl style="width: 640px; height: 10px;">
+                        <dt class="iconews" style="float: left; margin-left: 8%; width: 13px; height: 13px;
+                            margin-top: 5px;"></dt>
+                        <dd>
+                            <div style="width: 80%; position: absolute; margin-left: 10%;">
+                                <a href="#" style="font-size: 20px;">引领时尚点餐（扫二维码）</a>
+                            </div>
+                            <div style="position: absolute; margin-left: 55%;">
+                                <script type="text/javascript">                                    document.write((new Date().toLocaleDateString()));</script>
+                            </div>
                         </dd>
                     </dl>
                 </div>
-                <div class="phoneNo">
-                    <h3>
-                        咨询电话：0716-8206667</h3>
-                </div>
-                <div class="msg">
-                    <h2>
-                        在线留言</h2>
-                    <p>
-                        如果您在使用中遇到任何问题，请反馈给我们，我们非常愿意听到您的声音。</p>
-                    <a target="view_window" href="http://www.yitrack.com/message.htm">我要留言</a>
-                </div>
-                <div class="searchBg">
-                    <input type="text" />
+                <div id="roll_temp">
                 </div>
             </div>
+            <div class="contact">
+                <div class="weibo">
+                    <a title="腾讯微博" class="icon icoTencentWeibo" href="http://www.yitrack.com/#" target="_blank">
+                    </a><a title="新浪微博" class="icon icoSinaWeibo" href="http://www.yitrack.com/#" target="_blank">
+                    </a>
+                </div>
+                <div style="clear: both; height: 0; overflow: hidden; line-header: 0;">
+                </div>
+                <div class="bg bgManual">
+                    <div class="manual">
+                        <dl>
+                            <dt>
+                                <h2>
+                                    产品帮助手册</h2>
+                                <p>
+                                    -- e食通操作方法</p>
+                                <p>
+                                    -- e勤通使用一览</p>
+                                <p>
+                                    -- 更多...</p>
+                            </dt>
+                            <dd>
+                                <a href="http://www.yitrack.com/#" title="亿创阁产品帮助手册"></a>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="phoneNo">
+                        <h3>
+                            咨询电话：0716-8206667</h3>
+                    </div>
+                    <div class="msg">
+                        <h2>
+                            在线留言</h2>
+                        <p>
+                            如果您在使用中遇到任何问题，请反馈给我们，我们非常愿意听到您的声音。</p>
+                        <a target="view_window" href="http://www.yitrack.com/#">我要留言</a>
+                    </div>
+                    <div class="searchBg">
+                        <input type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="subFooter">
+                <span>“ 让科技更好地服务于社会 ”</span>
+            </div>
         </div>
-        <div class="subFooter">
-            <span>“ 让科技更好地服务于社会 ”</span>
+        <div id="casemark" class="mark">
         </div>
-    </div>
-    <div id="casemark" class="mark">
-    </div>
-    <div id="case">
-        <div class="map">
+        <div id="case">
+            <div class="map">
+                <div class="section">
+                </div>
+            </div>
             <div class="section">
-            </div>
-        </div>
-        <div class="section">
-            <div class="title">
-                <h2>
-                    案 例 / Case</h2>
-            </div>
-            <div class="list">
-                <dl>
-                    <div style="width: 20%; position: absolute; margin-left: 0px;">
-                        <dt>
+                <div class="title">
+                    <h2>
+                        案 例 / Case</h2>
+                </div>
+                <div class="list" style="background-image: url('./YCG_files/img/eqt_bg.png');">
+                    <dl>
+                        <div style="width: 20%; position: absolute; margin-left: 0px;">
+                            <!--<dt>
                             <img width="260px" height="140px" src="./YCG_files/SalesLogistic.png"></dt>
                         <dd>
                             <h3>
                                 e勤通</h3>
                             外勤生物识别仪，国内唯一一家同时提供智<br />
                             能手机，查询外勤人员管理的助手。
-                        </dd>
-                    </div>
-                    <div style="width: 47%; position: absolute; margin-left: 20%;">
-                        E勤通——外勤人员生物识别记录仪是针对外勤人员出差绩效考核，调度管理、保安、 警卫、交
-                        警、巡逻人员的警力管理部署调配、线路巡查检测、医疗事故认定、重要区 域的门禁管制、银
-                        行证券类身份确认等行业设计的专用产品。可以随时在调度、管理中
-                        心的电子地图上显示配备该产品外场人员使用者的位置，并收集外场突发事件信息或线 路故障
-                        等信息，便于记录、认定管理外勤人员。最终数据会在PC软件端得到处理，可选 择打印输出统
-                        计记录和绘制出行路线图。
-                        <br />
-                        <br />
-                        E勤通：中国最专业、简单、实用的外勤管理产品，国内唯一一家同时提供智能手机， 查询外勤
-                        人员管理的助手。从过程管理、成本管理、时间管理入手，帮助企业加强外勤 人员和车辆的管理
-                        ，降低管理成本，提高工作效率，推动公司更健康快速发展。为了能
-                        更快地转化高新技术使之服务于社会，并推出具有很高性价比的产品，初期产品将以中 、低档为
-                        主，并通过舍弃一些华而不实的功能来降低产品价格；与此同时，本公司将继 续研发制造系列款
-                        型以满足市场多元化的需求。
-                    </div>
-                </dl>
-            </div>
-            <div class="list">
-                <dl>
-                    <div style="width: 20%; position: absolute; margin-left: 0px;">
-                        <dt>
-                            <img width="260px" height="140px" src="./YCG_files/ocr.png"></dt>
-                        <dd>
-                            <h3>
-                                e食通</h3>
-                            一种基于智能手机应用二维码扫描的移动电子点菜以及无纸化厨房发菜配菜系统。
-                        </dd>
-                    </div>
-                    <div style="width: 47%; position: absolute; margin-left: 20%;">
-                        目前在国内餐饮行业，点餐的方式有很多种不仅有点菜宝、平板电脑、一体机等。近年来，手机的
-                        智能化程度越来越高，配置越来越先进，因此手机点餐应运而生。不过目前几乎所有的手机点餐系
-                        统都需要下载APP安装到手机才能使用，并且还存在手机系统兼容问题，给客户参与点餐造成了障碍。
-                        <br />
-                        <br />
-                        无纸化厨房装置是专为中高端餐厅、酒楼量身定做的，根据餐厅特有的管理特点，改变以手工写菜
-                        单，人工传输到后厨的管理模式，实现无纸化制作菜品，并监控整个管理过程，使厨房制菜到前厅
-                        管理做到有条不絮。无纸化厨房用于替代传统后厨打印机，改变了餐厅前台点餐后台出单制作的传
-                        统模式。使用电脑管理菜品制作、上菜规范的一系列流程，可以有效降低了很多客观错误，如遇到
-                        打印机缺纸、损坏等客观因素，也未有人发觉，势必带来前台、后厨的混乱局面。建立无纸化厨房
-                        ，对餐厅的设备投资和管理规范都比较有效，是解决成本的关键。服务效率和准确性大大提升，提
-                        升了企业形像，做到餐厅运营的规范统一，实现了厨房无纸化、信息化、智能化的管理。
-                    </div>
-                </dl>
-            </div>
-            <div style="clear: both; height: 0; overflow: hidden; line-header: 0;">
-            </div>
-            <div class="subFooter">
-                <span>“ 思您所需，做您所想 ”</span>
-            </div>
-        </div>
-    </div>
-    <div id="aboutmark" class="mark">
-    </div>
-    <div id="about">
-        <div class="map">
-            <div class="section">
-            </div>
-        </div>
-        <div class="section">
-            <div class="title">
-                <h2>
-                    关 于 / About</h2>
-            </div>
-            <div class="content">
-                <div class="list">
-                    <dl>
-                        <dt><span class="icon icoQuestions"></span>
-                            <h3>
-                                请联系我们，让我们帮您分忧</h3>
-                        </dt>
-                        <dd>
-                            <p>
-                                如果您需要我们为您提供帮助或咨询，欢迎与我们联系。</p>
-                            <p>
-                                <br>
-                                地址： 湖北省荆州市沙市区北京东路朝阳新城
-                                <br>
-                                邮编： 4342000
-                                <br>
-                                电话/传真： 0716-8206667
-                                <br>
-                                网址： <a href="http://www.yitrack.com/">www.yitrack.com</a>
-                                <br>
-                                邮箱： <a href="mailto:yitrack@163.com">yitrack@163.com</a>
-                            </p>
-                        </dd>
-                    </dl>
-                    <dl style="height: 10px;">
-                    </dl>
-                    <dl style="display: ;">
-                        <dt><span class="icon icoQuestions"></span>
-                            <h3>
-                                加入我们</h3>
-                        </dt>
-                        <dd>
-                            <p>
-                                加入我们，实现你未来的梦想！虚位以待，期待您的加入~</p>
-                            <br>
-                            <p>
-                                1、产品设计师</p>
-                            <p>
-                                职位类型： 全职
-                                <br>
-                                招聘人数： 2人
-                                <br>
-                                经验及学历要求： 大专以上，一年以上相关工作经验。
-                                <br>
-                                技能要求： 1.应有优秀的草图和徒手作画的能力.作为设计者应快而下笔应流畅. 2.有很好的制作模型的技术.了解SLA LOM等模型的技巧. 3.必须掌握一种矢量绘图软件(FREEHAND等)像素绘图软件(PHOTOSHOP)
-                                4.二维绘图方面能使用AUTOCAD等 5.能够独当一面,具有优秀的表达能力及人交往技圬,有制造业方面经验则更好.
-                                <br>
-                                工作态度： 有团队精神， 做事专心、细致， 有时间观念， 勤于学习、善于学习。
-                            </p>
-                            <br>
-                            <p>
-                                2、销售业务</p>
-                            <p>
-                                职位类型： 全职
-                                <br>
-                                招聘人数： 5人
-                                <br>
-                                经验及学历要求： 大专以上，两年以上相关工作经验。
-                                <br>
-                                年龄要求：40岁以下
-                                <br>
-                                工作地区：湖北荆州
-                                <br>
-                                要求及待遇： 男女不限、形象气质佳、沟通能力强、吃苦耐劳，对销售工作充满热情，能够适应 短期出差，具有较强的沟通能力及团队精神，积极乐观，诚信务实，勤奋上进，有
-                                电子类产品销售者优先。 试用期2--3月工资1800元 ，优秀者可提前结束试用期。 试用期满后签定劳动合同 工资=底薪+提成+全勤奖+养老+医疗 3000-5000元上不
-                                封顶 节假日按国家法定休息 每周休息一天
-                            </p>
-                            <br>
-                            <p>
-                                3、硬件工程师</p>
-                            <p>
-                                职位类型： 全职
-                                <br>
-                                招聘人数： 2人
-                                <br>
-                                经验及学历要求： 大专以上。
-                                <br>
-                                年龄要求：45岁以下
-                                <br>
-                                工作地区：湖北荆州
-                                <br>
-                                要求及待遇： 工作内容： 设计单片机电路； 负责单片机工作所需的外围电路设备的驱动； 编写 单片机软件，并对软件进行仿真调试。 初中级单片机工程师应该达到的水平：
-                                1、对 单片机应用场合有充分的了解，能够在应用项目中选择合适的单片机和外围芯片的型 号；能够根据系统指标很快的设计出一个应用系统的体系结构；在深圳，一个项目的时
-                                间只有一个星期左右，因为这些东西谁都能做，主要看谁能够做的又快又好； 2、熟练 使用ASM和C等相应的单片机语言，有良好的编程风格和一定的编程技巧； 3、能够进行
-                                简单的PCB版图设计，至少能够设计出有一定抗干扰能力的单片机电路板； 4、对控 制、信号系统有所了解，知道必要的算法； 5、熟悉计算机方向的简要开发，能够使 用计算机做一些简单的主机端软件；
-                                6、对模拟、数字电路、总线等比较熟悉，能够使 用它们进行单片机的外围接口。 通过试用期后将为正式员工提供完善的福利待遇 及畅通的职业发展平台。
-                            </p>
-                        </dd>
-                    </dl>
-                </div>
-                <div id="map" title="点击进入谷歌地图查看">
-                    <a target="view_window" href="http://ditu.google.cn/maps?q=%E6%B9%96%E5%8C%97%E7%9C%81%E8%8D%86%E5%B7%9E%E6%B2%99%E5%B8%82%E5%8C%97%E4%BA%AC%E8%B7%AF%E6%9C%9D%E9%98%B3%E6%96%B0%E5%9F%8E%EF%BC%88%E5%8D%97%E9%97%A8%EF%BC%89&hl=zh-CN&ie=UTF8&sll=30.300427,112.272205&sspn=0.006392,0.011362&oq=%E8%8D%86%E5%B7%9E%E6%9C%9D%E9%98%B3%E6%96%B0%E5%9F%8E&brcurrent=3,0x36828906e892dfbf:0x6224232f1d89285c,0,0x342826d4dc600d3f:0x2b2defc2f8aaade0%3B5,0,0&hq=%E6%9C%9D%E9%98%B3%E6%96%B0%E5%9F%8E%EF%BC%88%E5%8D%97%E9%97%A8%EF%BC%89&hnear=%E6%B9%96%E5%8C%97%E7%9C%81%E8%8D%86%E5%B7%9E%E5%B8%82%E6%B2%99%E5%B8%82%E5%8C%97%E4%BA%AC%E8%B7%AF&t=m&z=14&iwloc=A">
-                        <div style="width: 100%; height: 100%;">
-                            <h2>
-                                我们的位置</h2>
+                        </dd>-->
+                            <dt>
+                                <div id="mainwrapper">
+                                    <!-- Image Caption 2 -->
+                                    <div id="box-2" class="box" width="260px" height="140px">
+                                        <img id="image-2" src="./YCG_files/SalesLogistic.png" width="260" height="260" />
+                                        <span class="caption full-caption">
+                                            <h3>
+                                                e勤通</h3>
+                                            <br />
+                                            <p>
+                                                外勤生物识别仪，国内唯一一家同时提供<br />
+                                                智能手机，查询外勤人员管理的助手。</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </dt>
+                            <dd>
+                                <h3>
+                                    e勤通</h3>
+                                外勤生物识别仪，国内唯一一家同时提供智<br />
+                                能手机，查询外勤人员管理的助手。
+                            </dd>
                         </div>
-                    </a>
+                        <div style="width: 47%; position: absolute; margin-left: 20%;">
+                            <div style="text-align: center;">
+                                <span style="font-size: 40px; font-family: inherit; color: green;">最专业</span><span
+                                    style="font-size: 30px;">的餐饮管理软件</span>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                <div class="list" style="background-image: url('./YCG_files/img/est_bg.png');">
+                    <dl>
+                        <div style="width: 20%; position: absolute; margin-left: 0px;">
+                            <dt>
+                                <img width="260px" height="140px" src="./YCG_files/ocr.png"></dt>
+                            <dd>
+                                <h3>
+                                    e食通</h3>
+                                一种基于智能手机应用二维码扫描的移动电子点菜以及无纸化厨房发菜配菜系统。
+                            </dd>
+                        </div>
+                        <div style="width: 47%; position: absolute; margin-left: 20%;">
+                            目前在国内餐饮行业，点餐的方式有很多种不仅有点菜宝、平板电脑、一体机等。近年来，手机的 智能化程度越来越高，配置越来越先进，因此手机点餐应运而生。不过目前几乎所有的手机点餐系
+                            统都需要下载APP安装到手机才能使用，并且还存在手机系统兼容问题，给客户参与点餐造成了障碍。
+                            <br />
+                            <br />
+                            无纸化厨房装置是专为中高端餐厅、酒楼量身定做的，根据餐厅特有的管理特点，改变以手工写菜 单，人工传输到后厨的管理模式，实现无纸化制作菜品，并监控整个管理过程，使厨房制菜到前厅
+                            管理做到有条不絮。无纸化厨房用于替代传统后厨打印机，改变了餐厅前台点餐后台出单制作的传 统模式。使用电脑管理菜品制作、上菜规范的一系列流程，可以有效降低了很多客观错误，如遇到
+                            打印机缺纸、损坏等客观因素，也未有人发觉，势必带来前台、后厨的混乱局面。建立无纸化厨房 ，对餐厅的设备投资和管理规范都比较有效，是解决成本的关键。服务效率和准确性大大提升，提
+                            升了企业形像，做到餐厅运营的规范统一，实现了厨房无纸化、信息化、智能化的管理。
+                        </div>
+                    </dl>
+                </div>
+                <div style="clear: both; height: 0; overflow: hidden; line-header: 0;">
+                </div>
+                <div class="subFooter">
+                    <span>“ 思您所需，做您所想 ”</span>
                 </div>
             </div>
-            <div class="subFooter">
-                <span>“ 持续发展，永续经营 ”</span>
+        </div>
+        <div id="aboutmark" class="mark">
+        </div>
+        <div id="about">
+            <div class="map">
+                <div class="section">
+                </div>
+            </div>
+            <div class="section">
+                <div class="title">
+                    <h2>
+                        关 于 / About</h2>
+                </div>
+                <div class="content">
+                    <div class="list">
+                        <dl>
+                            <dt><span class="icon icoQuestions"></span>
+                                <h3>
+                                    请联系我们，让我们帮您分忧</h3>
+                            </dt>
+                            <dd>
+                                <p>
+                                    如果您需要我们为您提供帮助或咨询，欢迎与我们联系。</p>
+                                <p>
+                                    <br>
+                                    地址： 湖北省荆州市沙市区北京东路朝阳新城
+                                    <br>
+                                    邮编： 4342000
+                                    <br>
+                                    电话/传真： 0716-8206667
+                                    <br>
+                                    网址： <a href="http://www.yitrack.com/">www.yitrack.com</a>
+                                    <br>
+                                    邮箱： <a href="mailto:yitrack@163.com">yitrack@163.com</a>
+                                </p>
+                            </dd>
+                        </dl>
+                        <dl style="height: 10px;">
+                        </dl>
+                        <dl style="display: ;">
+                            <dt><span class="icon icoQuestions"></span>
+                                <h3>
+                                    加入我们</h3>
+                            </dt>
+                            <dd>
+                                <p>
+                                    加入我们，实现你未来的梦想！虚位以待，期待您的加入~</p>
+                                <br>
+                                <p>
+                                    1、产品设计师</p>
+                                <p>
+                                    职位类型： 全职
+                                    <br>
+                                    招聘人数： 2人
+                                    <br>
+                                    经验及学历要求： 大专以上，一年以上相关工作经验。
+                                    <br>
+                                    技能要求： 1.应有优秀的草图和徒手作画的能力.作为设计者应快而下笔应流畅. 2.有很好的制作模型的技术.了解SLA LOM等模型的技巧. 3.必须掌握一种矢量绘图软件(FREEHAND等)像素绘图软件(PHOTOSHOP)
+                                    4.二维绘图方面能使用AUTOCAD等 5.能够独当一面,具有优秀的表达能力及人交往技圬,有制造业方面经验则更好.
+                                    <br>
+                                    工作态度： 有团队精神， 做事专心、细致， 有时间观念， 勤于学习、善于学习。
+                                </p>
+                                <br>
+                                <p>
+                                    2、销售业务</p>
+                                <p>
+                                    职位类型： 全职
+                                    <br>
+                                    招聘人数： 5人
+                                    <br>
+                                    经验及学历要求： 大专以上，两年以上相关工作经验。
+                                    <br>
+                                    年龄要求：40岁以下
+                                    <br>
+                                    工作地区：湖北荆州
+                                    <br>
+                                    要求及待遇： 男女不限、形象气质佳、沟通能力强、吃苦耐劳，对销售工作充满热情，能够适应 短期出差，具有较强的沟通能力及团队精神，积极乐观，诚信务实，勤奋上进，有
+                                    电子类产品销售者优先。 试用期2--3月工资1800元 ，优秀者可提前结束试用期。 试用期满后签定劳动合同 工资=底薪+提成+全勤奖+养老+医疗 3000-5000元上不
+                                    封顶 节假日按国家法定休息 每周休息一天
+                                </p>
+                                <br>
+                                <p>
+                                    3、硬件工程师</p>
+                                <p>
+                                    职位类型： 全职
+                                    <br>
+                                    招聘人数： 2人
+                                    <br>
+                                    经验及学历要求： 大专以上。
+                                    <br>
+                                    年龄要求：45岁以下
+                                    <br>
+                                    工作地区：湖北荆州
+                                    <br>
+                                    要求及待遇： 工作内容： 设计单片机电路； 负责单片机工作所需的外围电路设备的驱动； 编写 单片机软件，并对软件进行仿真调试。 初中级单片机工程师应该达到的水平：
+                                    1、对 单片机应用场合有充分的了解，能够在应用项目中选择合适的单片机和外围芯片的型 号；能够根据系统指标很快的设计出一个应用系统的体系结构；在深圳，一个项目的时
+                                    间只有一个星期左右，因为这些东西谁都能做，主要看谁能够做的又快又好； 2、熟练 使用ASM和C等相应的单片机语言，有良好的编程风格和一定的编程技巧； 3、能够进行
+                                    简单的PCB版图设计，至少能够设计出有一定抗干扰能力的单片机电路板； 4、对控 制、信号系统有所了解，知道必要的算法； 5、熟悉计算机方向的简要开发，能够使 用计算机做一些简单的主机端软件；
+                                    6、对模拟、数字电路、总线等比较熟悉，能够使 用它们进行单片机的外围接口。 通过试用期后将为正式员工提供完善的福利待遇 及畅通的职业发展平台。
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div style="">
+                        <div id="map" title="点击进入谷歌地图查看">
+                            <a target="view_window" href="http://ditu.google.cn/maps?q=%E6%B9%96%E5%8C%97%E7%9C%81%E8%8D%86%E5%B7%9E%E6%B2%99%E5%B8%82%E5%8C%97%E4%BA%AC%E8%B7%AF%E6%9C%9D%E9%98%B3%E6%96%B0%E5%9F%8E%EF%BC%88%E5%8D%97%E9%97%A8%EF%BC%89&hl=zh-CN&ie=UTF8&sll=30.300427,112.272205&sspn=0.006392,0.011362&oq=%E8%8D%86%E5%B7%9E%E6%9C%9D%E9%98%B3%E6%96%B0%E5%9F%8E&brcurrent=3,0x36828906e892dfbf:0x6224232f1d89285c,0,0x342826d4dc600d3f:0x2b2defc2f8aaade0%3B5,0,0&hq=%E6%9C%9D%E9%98%B3%E6%96%B0%E5%9F%8E%EF%BC%88%E5%8D%97%E9%97%A8%EF%BC%89&hnear=%E6%B9%96%E5%8C%97%E7%9C%81%E8%8D%86%E5%B7%9E%E5%B8%82%E6%B2%99%E5%B8%82%E5%8C%97%E4%BA%AC%E8%B7%AF&t=m&z=14&iwloc=A">
+                                <div style="width: 100%; height: 100%;">
+                                    <h2>
+                                        我们的位置</h2>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="weixin" title="微信 - 发现 - 扫一扫">
+                            <a target="view_window" href="http://jingyan.baidu.com/article/37bce2be2567f91002f3a2b1.html">
+                                <div style="width: 100%; height: 100%;">
+                                    <h2 class="weixinh2">
+                                        微信扫一扫</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="subFooter">
+                    <span>“ 持续发展，永续经营 ”</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="footermark" class="mark">
-    </div>
-    <div id="footer">
-        Copyright © 2013 -
-        <script type="text/javascript">            document.write((new Date()).getFullYear());</script>
-        湖北亿创阁科技有限公司
-        <br />
-        鄂ICP备13015687号
-    </div>
+        <div id="footermark" class="mark">
+        </div>
+        <div id="footer">
+            Copyright © 2013 -
+            <script type="text/javascript">                document.write((new Date()).getFullYear());</script>
+            湖北亿创阁科技有限公司
+            <br />
+            鄂ICP备13015687号
+        </div>
+        <!--pop box begin-->
+        <div id="dialog-overlay">
+        </div>
+        <div id="pop-box">
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="8" height="28">
+                        <img src="./YCG_files/img/pop_box_img4.png" width="8" height="28" />
+                    </td>
+                    <td width="850" align="left" background="./YCG_files/img/pop_box_img1.png">
+                        <div class="title">
+                            新闻</div>
+                    </td>
+                    <td width="30" align="right" background="./YCG_files/img/pop_box_img1.png">
+                        <a class="close" onclick="popBoxclose()" href="javascript:void(0);">
+                            <img src="./YCG_files/img/pop_box_img3.png" width="12" height="12" /></a>
+                    </td>
+                    <td width="8">
+                        <img src="./YCG_files/img/pop_box_img5.png" width="8" height="28" />
+                    </td>
+                </tr>
+                <tr>
+                    <td background="./YCG_files/img/pop_box_img6.png">
+                    </td>
+                    <td colspan="2" style="background: #FFF; padding: 20px 40px;">
+                        <!--pop content begin-->
+                        <iframe name="iframeNews" id="iframeNews" src="#" width="100%" height="600px" scrolling="auto"
+                            frameborder="0"></iframe>
+                        <!--pop content end-->
+                    </td>
+                    <td background="./YCG_files/img/pop_box_img7.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="8" background="./YCG_files/img/pop_box_img8.png">
+                        <!--<img src="./YCG_files/img/pop_box_img8.png" width="8" height="8" />-->
+                    </td>
+                    <td colspan="2" background="./YCG_files/img/pop_box_img10.png">
+                    </td>
+                    <td height="8" background="./YCG_files/img/pop_box_img9.png">
+                        <!--<img src="./YCG_files/img/pop_box_img9.png" width="8" height="8" />-->
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--pop box end-->
 </body>
 </html>
