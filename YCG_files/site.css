@@ -546,6 +546,7 @@ a:focus {
 
 #case .list {
   height: 300px;
+  border: 1px solid #ECE5E5;
 }
 
 #case .list dl {

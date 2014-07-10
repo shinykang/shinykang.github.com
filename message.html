@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -9,10 +9,92 @@
 </head>
 <body style="background-color: #EAEEF1;">
     <div style="margin-top: 100px; width: 100%;">
-        <div style="margin: 0px auto; width: 800px; padding: 40px 0px 40px 40px; background-color: white;">
-            <iframe style="border: 0px" width="760px" border="0px" scrolling="no" height="260px"
-                frameborder="”0”" src="http://122.128.111.249:2723/" border="”0″"></iframe>
-        </div>
+        <form method="post" action="" name="form1">
+        <table width="650" border="0" align="center" cellpadding="7" cellspacing="0" style="font-size: 14px;">
+            <tbody>
+                <tr>
+                    <td width="100">
+                        &nbsp;&nbsp;&nbsp;联系人：
+                    </td>
+                    <td>
+                        <input type="text" name="nickname" id="nickname" value=""><span style="color: #FF0000">
+                            *</span>
+                    </td>
+                    <td width="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        &nbsp;&nbsp;&nbsp;联系电话：
+                    </td>
+                    <td>
+                        <input type="text" name="guesttel" id="guesttel" value=""><span style="color: #FF0000">
+                            *</span>
+                    </td>
+                    <td width="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        &nbsp;&nbsp;&nbsp;联系邮箱：
+                    </td>
+                    <td>
+                        <input type="text" name="guestemail" id="guestemail" value=""><span style="color: #FF0000">
+                            *</span>
+                    </td>
+                    <td width="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        &nbsp;&nbsp;&nbsp;联系QQ：
+                    </td>
+                    <td>
+                        <input type="text" name="guestqq" id="guestqq" value=""><span style="color: #FF0000">
+                            *</span>
+                    </td>
+                    <td width="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;标题：
+                    </td>
+                    <td colspan="2">
+                        <input type="text" name="title" id="title" value="">&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;内容：
+                    </td>
+                    <td colspan="2">
+                        <textarea name="content" id="content"></textarea>&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center" height="10">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;验证码：
+                    </td>
+                    <td colspan="2">
+                        <span style="float: left;">
+                            <img src="http://www.yitrack.com/index.php?case=tool&amp;act=verify" id="checkcode"
+                                onclick="this.src='http://www.yitrack.com/index.php?case=tool&amp;act=verify&amp;id='+Math.random()*5;"
+                                style="cursor: pointer;" alt="点击刷新验证码" align="absmiddle">
+                        </span><span style="float: left; padding-left: 10px;">
+                            <input type="text" id="verify" name="verify" size="10" style="height: 16px;"></span><span
+                                style="color: #FF0000; float: left;">*</span>&nbsp;&nbsp;&nbsp;<input type="submit"
+                                    name="submit" value=" 提交 " class="btn">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </form>
     </div>
 </body>
 </html>

@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="" name="keywords">
+    <meta content="湖北亿创阁,亿创阁,外勤人员管理,gps,考勤仪,手机点餐,硬件开发,软件开发" name="keywords">
     <link rel="icon" href="./YCG_files/img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./YCG_files/img/favicon.ico" type="image/x-icon" />
-    <meta content="" name="description">
+    <meta content="湖北亿创阁科技有限公司是一家从事硬件与软件相结合的研发设计高新技术企业，公司主要产品包括外勤人员管理考勤记录仪，gps跟踪设备，手机点餐系统等，公司主要业务范围包括各类电子产品研发设计，各类软件系统开发等。" name="description">
     <title>湖北亿创阁科技有限公司</title>
     <link href="./YCG_files/site.css" rel="stylesheet">
     <script type="text/javascript" src="./YCG_files/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./YCG_files/jquery.signalR.js"></script>
+    <script src="http://192.168.1.22:10088/signalr/hubs" type="text/javascript"></script>
     <script type="text/javascript" src="./YCG_files/bookmarkscroll.js"></script>
     <style type="text/css">
         #mainwrapper
@@ -47,7 +49,7 @@
         }
         #mainwrapper .box .caption
         {
-            background-color: antiquewhite;
+            background-color: ghostwhite;
             position: absolute;
             color: darkblue;
             z-index: 100;
@@ -86,11 +88,11 @@
         /** Caption 4: Slide **/
         #mainwrapper .box .slide-caption
         {
-            width: 170px;
+            width: 260px;
             height: 170px;
-            text-align: left;
+            text-align: center;
             padding: 15px;
-            left: 200px;
+            left: 270px;
         }
         
         #mainwrapper #box-5.box .rotate-caption
@@ -165,7 +167,7 @@
         }
         #mainwrapper .box:hover .slide-caption
         {
-            background-color: rgba(0,0,0,1) !important;
+            background-color: ghostwhite !important;
             -moz-transform: translateX(-100%);
             -o-transform: translateX(-100%);
             -webkit-transform: translateX(-100%);
@@ -249,6 +251,13 @@
             margin-left: 5px;
         }
     </style>
+    <style type="text/css">
+    /* KeFuDiv */
+    .KeFuDiv{position:absolute;height:160px;width:118px;}
+    .KeFuList{background:url(./YCG_files/img/mid001.gif);margin: 0px 0px -2px 0px;}
+    .KeFuTitle{background:url(./YCG_files/img/list_001.gif);margin-left:9px;font-size:12px;width:101px;height:20px;line-height:20px;text-align:center;}
+    .KeFuItem{text-align:center;margin-top:8px;font-size:12px;}
+    </style>
     <script type="text/javascript">
         function popupBox(newsname) {
             var maskHeight = $(document).height();
@@ -330,10 +339,147 @@
             obj.onmouseout = function () { rollTime = setInterval(scrolly, speed); }
         }
     </script>
+    <script type="text/javascript">
+        $(function () {
+            $.connection.hub.logging = true;
+            $.connection.hub.url = "http://192.168.1.22:10088/signalr";
+
+            try {
+                var driver = $.connection.driver;
+
+                $(".helpCHM").click(function () {
+                    driver.server.printChm("est");
+                });
+
+                //driver.client.showTime = function (value) {
+                //      $(".show-time").html(value);
+                //}
+
+                driver.client.stop = function (value) {
+                    alert(value);
+                }
+
+                driver.client.progress = function (value) {
+                    $(".bar").css({ width: value + "%" });
+                }
+
+                $.connection.hub.start().done(function () {
+                    //driver.server.showTime("123");
+                });
+            } catch (err) {
+                //alert("服务未打开！");
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var isIE = /msie/i.test(navigator.userAgent);
+
+        function gID(id) { return document.getElementById(id); }
+
+        function ScrollDiv(id, pScrollY) {
+            var ScrollY = $(document).scrollTop() || $("body").scrollTop();
+            if (pScrollY == null) { pScrollY = 0; }
+
+            var moveTop = .1 * (ScrollY - pScrollY);
+            moveTop = (moveTop > 0) ? Math.ceil(moveTop) : Math.floor(moveTop);
+            $("#" + id).css({ top: parseInt($("#" + id).css("top")) + moveTop + "px" });
+
+            pScrollY = pScrollY + moveTop;
+            setTimeout("ScrollDiv('" + id + "'," + pScrollY + ");", 50);
+        }
+
+        function addObjEvent(obj, eventName, eventFunc) {
+            if (obj.attachEvent) { //IE
+                obj.attachEvent(eventName, eventFunc);
+            } else if (obj.addEventListener) { //FF Gecko / W3C
+                var eventName2 = eventName.toString().replace(/on(.*)/i, '$1');
+                obj.addEventListener(eventName2, eventFunc, false);
+            } else {
+                obj[eventName] = eventFunc;
+            }
+        }
+
+        function delObjEvent(obj, eventName, eventFunc) {
+            if (obj.detachEvent) { // IE
+                obj.detachEvent(eventName, eventFunc);
+            } else if (obj.removeEventListener) { //FF Gecko / W3C
+                var eventName2 = eventName.toString().replace(/on(.*)/i, '$1');
+                obj.removeEventListener(eventName2, eventFunc, false);
+            } else {
+                obj[eventName] = null;
+            }
+        }
+
+        function MoveDiv(obj, e) {
+            e = e || window.event;
+
+            var ie6 = isIE;
+            if (/msie 9/i.test(navigator.userAgent)) { ie6 = false; }
+            if (ie6 && e.button == 1 || !ie6 && e.button == 0) { } else { return false; }
+
+            obj.style.position = 'absolute';
+            obj.ondragstart = function () { return false; }
+
+            var x = e.screenX - obj.offsetLeft;
+            var y = e.screenY - obj.offsetTop;
+            addObjEvent(document, 'onmousemove', moving);
+            addObjEvent(document, 'onmouseup', endMov);
+            e.cancelBubble = true;
+
+            if (isIE) {
+                obj.setCapture();
+            } else {
+                window.captureEvents(Event.mousemove);
+            }
+
+            if (e.preventDefault) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            e.returnValue = false;
+            return false;
+
+            function moving(e) {
+                obj.style.left = (e.screenX - x) + 'px';
+                obj.style.top = (e.screenY - y) + 'px';
+                return false;
+            }
+
+            function endMov(e) {
+                delObjEvent(document, 'onmousemove', moving);
+                delObjEvent(document, 'onmouseup', arguments.callee);
+                if (isIE) {
+                    obj.releaseCapture(); 
+                } else {
+                    window.releaseEvents(Event.mousemove); 
+                }
+            }
+        }
+
+        //初始位置
+        $("#KeFuDiv").css({ top: (document.documentElement.clientHeight - $("#KeFuDiv").offsetHeight) / 2 + "px" });
+        $("#KeFuDiv").css({ left: document.documentElement.clientWidth - $("#KeFuDiv").offsetWidth + "px" });
+        //开始滚动
+        ScrollDiv('KeFuDiv');
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#closeBannerImgBtn").click(function () {
+                $("#banner").animate({ height: '0px', opacity: '0.0', margin: '0px 0px 30px 0px' });
+            });
+
+            $("#closeCaseImgBtn").click(function () {
+                $("#caseMap").animate({ height: '0px',margin: '0px 0px 10px 0px', opacity: '0.0' });
+            });
+            
+            $("#closeAboutImgBtn").click(function () {
+                $("#aboutMap").animate({ height: '0px', opacity: '0.0', margin: '0px 0px 10px 0px' });
+            });
+        });
+    </script>
 </head>
 <body>
-    <div id="homemark" class="mark">
-    </div>
+    <!-- 固定头 -->
     <div id="top">
         <div class="section" style="padding: 0px;">
             <div id="logo">
@@ -342,18 +488,24 @@
             </div>
             <div id="nav">
                 <a class="active" href="javascript:bookmarkscroll.scrollTo('homemark')">网站首页</a>
-                <a href="javascript:bookmarkscroll.scrollTo('casemark')" class="">产品案例</a> <a href="javascript:bookmarkscroll.scrollTo('aboutmark')"
-                    class="">关于我们</a>
+                <a href="javascript:bookmarkscroll.scrollTo('casemark')" class="">产品案例</a> 
+                <a href="javascript:bookmarkscroll.scrollTo('aboutmark')" class="">关于我们</a>
             </div>
         </div>
     </div>
-    <div id="banner">
+
+    <!-- 首页 -->
+    <div id="homemark" class="mark">
+    </div>
+    <div id="home">
+        <div id="banner">
+        <div style="width: 100%;position: absolute;float: right;">
+                <span style="float: right;"><a id="closeBannerImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
+            </div>
         <div class="section">
         </div>
     </div>
-    <div class="mark">
-    </div>
-    <div id="server" class="section">
+        <div id="server" class="section">
         <div class="list">
             <div class="title">
                 <h2>
@@ -363,8 +515,8 @@
                 <dt class="icowaibu"></dt>
                 <dd>
                     <h3>
-                        市民点餐用手机替代“服务员”</h3>
-                    “我和朋友到餐厅吃饭，看到桌上有张宣传单，上面印着二维码和点餐方法，我们尝试着点了几个菜，随后服务员上前确认。”昨日，市民姚毅告诉记者，城区... <a href="#"
+                        <a href="javascript:popupBox('notic1')">市民点餐用手机替代“服务员”</a></h3>
+                    “我和朋友到餐厅吃饭，看到桌上有张宣传单，上面印着二维码和点餐方法，我们尝试着点了几个菜，随后服务员上前确认。”昨日，市民姚毅告诉记者，城区... <a href="javascript:popupBox('notic1')"
                         style="font-size: 9px;">>></a>
                 </dd>
             </dl>
@@ -372,8 +524,8 @@
                 <dt class="icofabu"></dt>
                 <dd>
                     <h3>
-                        欢迎光临本公司的网站</h3>
-                    本公司主要从事计算机信息科技领域内软硬件技术开发、是从事硬件与软件相结合的研发设计高新技术企业，公司主要产品包括外勤人员管理考勤记录仪... <a href="#"
+                        <a href="javascript:popupBox('notic2')">欢迎光临本公司的网站</a></h3>
+                    本公司主要从事计算机信息科技领域内软硬件技术开发、是从事硬件与软件相结合的研发设计高新技术企业，公司主要产品包括外勤人员管理考勤记录仪... <a href="javascript:popupBox('notic2')"
                         style="font-size: 9px;">>></a>
                 </dd>
             </dl>
@@ -401,9 +553,8 @@
         </div>
         <div class="contact">
             <div class="weibo">
-                <a title="腾讯微博" class="icon icoTencentWeibo" href="http://www.yitrack.com/#" target="_blank">
-                </a><a title="新浪微博" class="icon icoSinaWeibo" href="http://www.yitrack.com/#" target="_blank">
-                </a>
+                <!--<a title="腾讯微博" class="icon icoTencentWeibo" href="" target="_blank"></a>-->
+                <a title="新浪微博" class="icon icoSinaWeibo" href="javascript:void((function(s,d,e,r,l,p,t,z,c) {var%20f='http://v.t.sina.com.cn/share/share.php?appkey=4174743220',u=z||d.location,p=['&url=',e(u),'& title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'& content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a() {if(!window.open([f,p].join(''),'mb', ['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width- 440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');}; if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}) (screen,document,encodeURIComponent,'','','','亿创阁E食通的相关媒体报道','',''));" target="_blank"></a>
             </div>
             <div style="clear: both; height: 0; overflow: hidden; line-header: 0;">
             </div>
@@ -421,7 +572,7 @@
                                 -- 更多...</p>
                         </dt>
                         <dd>
-                            <a href="http://www.yitrack.com/#" title="亿创阁产品帮助手册"></a>
+                            <a class="helpCHM" href="#" title="亿创阁产品帮助手册"></a>
                         </dd>
                     </dl>
                 </div>
@@ -445,10 +596,16 @@
             <span>“ 让科技更好地服务于社会 ”</span>
         </div>
     </div>
+    </div>
+
+    <!-- 产品 -->
     <div id="casemark" class="mark">
     </div>
     <div id="case">
-        <div class="map">
+        <div class="map" id="caseMap">
+            <div style="width: 100%;position: absolute;float: right;">
+                <span style="float: right;"><a id="closeCaseImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
+            </div>
             <div class="section">
             </div>
         </div>
@@ -457,7 +614,7 @@
                 <h2>
                     案 例 / Case</h2>
             </div>
-            <div class="list" style="background-image: url('./YCG_files/img/eqt_bg.png');">
+            <div class="list" style="background-color: #ECECEC;"> <!--style="background-image: url('./YCG_files/img/eqt_bg.png');">-->
                 <dl>
                     <div style="width: 20%; position: absolute; margin-left: 0px;">
                         <dt>
@@ -484,33 +641,67 @@
                         </dd>
                     </div>
                     <div style="width: 47%; position: absolute; margin-left: 20%;">
-                        <div style="text-align: center;">
-                            <span style="font-size: 40px; font-family: inherit; color: green;">最专业</span><span
-                                style="font-size: 30px;">的餐饮管理软件</span>
+                        <div style="text-align: center;margin-bottom: 20px;">
+                            <span style="font-size: 40px; font-family: inherit; color: green;">最安全</span><span
+                                style="font-size: 30px;">的指纹考勤机</span>
+                        </div>
+                        <div style="text-align: left;margin-bottom: 10px;margin-left:220px;">
+                            <span style="font-size: 20px;color: #009900;">&nbsp;&nbsp;①</span>
+                            <span style="font-size: 18px;font-family: 'Microsoft yahei','微软雅黑',Arial,Helvetica,sans-serif,'宋体';">&nbsp;&nbsp;厚度不到2厘米，轻巧易用</span>
+                        </div>
+                        <div style="text-align: left;margin-bottom: 10px;margin-left:220px;">
+                            <span style="font-size: 20px;color: #009900;">&nbsp;&nbsp;②</span>
+                            <span style="font-size: 18px;font-family: 'Microsoft yahei','微软雅黑',Arial,Helvetica,sans-serif,'宋体';">&nbsp;&nbsp;极大的减少了外勤管理费用</span>
+                        </div>
+                        <div style="text-align: left;margin-bottom: 10px;margin-left:220px;">
+                            <span style="font-size: 20px;color: #009900;">&nbsp;&nbsp;③</span>
+                            <span style="font-size: 18px;font-family: 'Microsoft yahei','微软雅黑',Arial,Helvetica,sans-serif,'宋体';">&nbsp;&nbsp;Galileo系统和GPRS系统双重定位</span>
                         </div>
                     </div>
                 </dl>
             </div>
-            <div class="list" style="background-image: url('./YCG_files/img/est_bg.png');">
+            <div class="list" style="background-color: #F1EEEE;"> <!--style="background-image: url('./YCG_files/img/est_bg.png');">-->
                 <dl>
-                    <div style="width: 20%; position: absolute; margin-left: 0px;">
+                    <div style="width: 47%; position: absolute; margin-left: 0px;">
+                        <div style="text-align: left;margin-bottom: 20px;">
+                            <span style="font-size: 40px; font-family: inherit; color: green;">最专业</span><span
+                                style="font-size: 30px;">的餐饮管理软件</span>
+                        </div>
+                        <div style="text-align: left;margin-bottom: 10px;margin-left:20px;">
+                            <span style="font-size: 20px;color: #009900;">&nbsp;&nbsp;①</span>
+                            <span style="font-size: 18px;font-family: 'Microsoft yahei','微软雅黑',Arial,Helvetica,sans-serif,'宋体';">&nbsp;&nbsp;7x12小时售后服务</span>
+                        </div>
+                        <div style="text-align: left;margin-bottom: 10px;margin-left:20px;">
+                            <span style="font-size: 20px;color: #009900;">&nbsp;&nbsp;②</span>
+                            <span style="font-size: 18px;font-family: 'Microsoft yahei','微软雅黑',Arial,Helvetica,sans-serif,'宋体';">&nbsp;&nbsp;快速的远程服务</span>
+                        </div>
+                        <div style="text-align: left;margin-bottom: 10px;margin-left:20px;">
+                            <span style="font-size: 20px;color: #009900;">&nbsp;&nbsp;③</span>
+                            <span style="font-size: 18px;font-family: 'Microsoft yahei','微软雅黑',Arial,Helvetica,sans-serif,'宋体';">&nbsp;&nbsp;多家权威机构软件认证</span>
+                        </div>
+                    </div>
+                    <div style="width: 20%; position: absolute; margin-left: 34%;">
                         <dt>
-                            <img width="260px" height="140px" src="./YCG_files/ocr.png"></dt>
+                            <div id="mainwrapper">
+                                <!-- Image Caption 2 -->
+                                <div id="box-4" class="box" width="260px" height="140px">
+                                    <img id="image-4" src="./YCG_files/ocr.png" width="260" height="260" />
+                                    <span class="caption slide-caption">
+                                        <h3>
+                                            e食通</h3>
+                                        <br />
+                                        <p>
+                                            一种基于智能手机应用二维码扫描的移动<br />
+                                            电子点菜以及无纸化厨房发菜配菜系统。</p>
+                                    </span>
+                                </div>
+                            </div>
+                            </dt>
                         <dd>
                             <h3>
                                 e食通</h3>
                             一种基于智能手机应用二维码扫描的移动电子点菜以及无纸化厨房发菜配菜系统。
                         </dd>
-                    </div>
-                    <div style="width: 47%; position: absolute; margin-left: 20%;">
-                        目前在国内餐饮行业，点餐的方式有很多种不仅有点菜宝、平板电脑、一体机等。近年来，手机的 智能化程度越来越高，配置越来越先进，因此手机点餐应运而生。不过目前几乎所有的手机点餐系
-                        统都需要下载APP安装到手机才能使用，并且还存在手机系统兼容问题，给客户参与点餐造成了障碍。
-                        <br />
-                        <br />
-                        无纸化厨房装置是专为中高端餐厅、酒楼量身定做的，根据餐厅特有的管理特点，改变以手工写菜 单，人工传输到后厨的管理模式，实现无纸化制作菜品，并监控整个管理过程，使厨房制菜到前厅
-                        管理做到有条不絮。无纸化厨房用于替代传统后厨打印机，改变了餐厅前台点餐后台出单制作的传 统模式。使用电脑管理菜品制作、上菜规范的一系列流程，可以有效降低了很多客观错误，如遇到
-                        打印机缺纸、损坏等客观因素，也未有人发觉，势必带来前台、后厨的混乱局面。建立无纸化厨房 ，对餐厅的设备投资和管理规范都比较有效，是解决成本的关键。服务效率和准确性大大提升，提
-                        升了企业形像，做到餐厅运营的规范统一，实现了厨房无纸化、信息化、智能化的管理。
                     </div>
                 </dl>
             </div>
@@ -521,10 +712,15 @@
             </div>
         </div>
     </div>
+
+    <!-- 关于 -->
     <div id="aboutmark" class="mark">
     </div>
     <div id="about">
-        <div class="map">
+        <div class="map" id="aboutMap">
+            <div style="width: 100%;position: absolute;float: right;">
+                <span style="float: right;"><a id="closeAboutImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
+            </div>
             <div class="section">
             </div>
         </div>
@@ -647,8 +843,8 @@
             </div>
         </div>
     </div>
-    <div id="footermark" class="mark">
-    </div>
+
+    <!-- 底部 -->
     <div id="footer">
         Copyright © 2013 -
         <script type="text/javascript">            document.write((new Date()).getFullYear());</script>
@@ -656,7 +852,8 @@
         <br />
         鄂ICP备13015687号
     </div>
-    <!--pop box begin-->
+
+    <!-- 弹框新闻 -->
     <div id="dialog-overlay">
     </div>
     <div id="pop-box">
@@ -667,7 +864,7 @@
                 </td>
                 <td width="850" align="left" background="./YCG_files/img/pop_box_img1.png">
                     <div class="title">
-                        新闻</div>
+                        亿创阁</div>
                 </td>
                 <td width="30" align="right" background="./YCG_files/img/pop_box_img1.png">
                     <a class="close" onclick="popBoxclose()" href="javascript:void(0);">
@@ -701,6 +898,29 @@
             </tr>
         </table>
     </div>
-    <!--pop box end-->
+
+    <!-- 在线客服 -->
+    <div id="KeFuDiv" class="KeFuDiv" style="top: 327px; left: 1247px; position: absolute;">
+	    <div>
+		    <img src="./YCG_files/img/up_001.gif" height="55" border="0" usemap="#Map" style="cursor:move;" onmousedown="MoveDiv(KeFuDiv,event);" title="拖动">
+		    <map name="Map" id="Map1">
+			    <area shape="circle" coords="105,10,8" href="javascript:" onclick="KeFuDiv.style.display='none';" title="关闭">
+		    </map>
+	    </div>
+
+	    <div class="KeFuList">
+		    <div class="KeFuTitle">会员客服</div>
+		    <div class="KeFuItem">
+			    <a target="_blank" href="tencent://message/?uin=317868558&amp;Site=&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:17905772:3" alt="有事点这里"></a>
+		    </div>
+		    <div class="KeFuItem">
+			    <a target="_blank" href="tencent://message/?uin=3178685582&amp;Site=&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:17905772:2" alt="有事点这里"></a>
+		    </div>
+	    </div>
+
+	    <div>
+            <img src="./YCG_files/img/bot_001.gif">
+        </div>
+    </div>
 </body>
 </html>
