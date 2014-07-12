@@ -9,8 +9,6 @@
     <title>湖北亿创阁科技有限公司</title>
     <link href="./YCG_files/site.css" rel="stylesheet">
     <script type="text/javascript" src="./YCG_files/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="./YCG_files/jquery.signalR.js"></script>
-    <script src="http://192.168.1.22:10088/signalr/hubs" type="text/javascript"></script>
     <script type="text/javascript" src="./YCG_files/bookmarkscroll.js"></script>
     <style type="text/css">
         #mainwrapper
@@ -259,12 +257,19 @@
     .KeFuItem{text-align:center;margin-top:8px;font-size:12px;}
     </style>
     <script type="text/javascript">
-        function popupBox(newsname) {
+        function popupBox(newsname,type) {
             var maskHeight = $(document).height();
             var maskWidth = $(window).width();
-            var ordertop = document.documentElement.scrollTop + document.documentElement.clientHeight;
+            var ordertop = document.documentElement.clientHeight;//  + document.documentElement.scrollTop;
+            //alert(document.documentElement.scrollTop + "|" + ordertop + "|" + document.documentElement.clientHeight);
             var orderLeft = (maskWidth / 2) - ($('#pop-box').width() / 2);
-            document.getElementById("iframeNews").src = newsname + ".html";
+            var typename = "News";
+            if (type == 0) {//0 news
+                typename = "News";
+            } else if (type == 1) {//1 notic
+                typename = "Notic";
+            }
+            document.getElementById("iframeNews").src = typename + "/" + newsname + ".html";
             $('#dialog-overlay').css({ height: maskHeight, width: maskWidth }).show(250);
             $('#pop-box').css({ top: ordertop, left: orderLeft }).show(500);
         }
@@ -340,38 +345,6 @@
         }
     </script>
     <script type="text/javascript">
-        $(function () {
-            $.connection.hub.logging = true;
-            $.connection.hub.url = "http://192.168.1.22:10088/signalr";
-
-            try {
-                var driver = $.connection.driver;
-
-                $(".helpCHM").click(function () {
-                    driver.server.printChm("est");
-                });
-
-                //driver.client.showTime = function (value) {
-                //      $(".show-time").html(value);
-                //}
-
-                driver.client.stop = function (value) {
-                    alert(value);
-                }
-
-                driver.client.progress = function (value) {
-                    $(".bar").css({ width: value + "%" });
-                }
-
-                $.connection.hub.start().done(function () {
-                    //driver.server.showTime("123");
-                });
-            } catch (err) {
-                //alert("服务未打开！");
-            }
-        });
-    </script>
-    <script type="text/javascript">
         var isIE = /msie/i.test(navigator.userAgent);
 
         function gID(id) { return document.getElementById(id); }
@@ -383,7 +356,7 @@
             var moveTop = .1 * (ScrollY - pScrollY);
             moveTop = (moveTop > 0) ? Math.ceil(moveTop) : Math.floor(moveTop);
             $("#" + id).css({ top: parseInt($("#" + id).css("top")) + moveTop + "px" });
-
+            
             pScrollY = pScrollY + moveTop;
             setTimeout("ScrollDiv('" + id + "'," + pScrollY + ");", 50);
         }
@@ -464,14 +437,22 @@
     </script>
     <script type="text/javascript">
         $(function () {
+            var newstr = "[" +
+                         "{ 'Prid': 21, 'Prname': '发菜口', 'Prip': '192.168.1.177', 'Prtype': '58', 'Prqie': 1, 'Prjiao': 0, 'Prshan': 1, 'Prcopy': 1, 'Pr01': '桂林宴', 'Pr02': '0716-6666666', 'Hotid': 0 }," +
+                         "{ 'Prid': 11, 'Prname': '发菜口1', 'Prip1': '192.168.1.111', 'Prtype1': '111', 'Prqie': 1, 'Prjiao': 0, 'Prshan': 1, 'Prcopy': 1, 'Pr01': '桂林宴', 'Pr02': '0716-6666666', 'Hotid': 0 }" +
+                         "]";
+
+            var jsonobj = eval('(' + newstr + ')');
+
+
             $("#closeBannerImgBtn").click(function () {
                 $("#banner").animate({ height: '0px', opacity: '0.0', margin: '0px 0px 30px 0px' });
             });
 
             $("#closeCaseImgBtn").click(function () {
-                $("#caseMap").animate({ height: '0px',margin: '0px 0px 10px 0px', opacity: '0.0' });
+                $("#caseMap").animate({ height: '0px', margin: '0px 0px 10px 0px', opacity: '0.0' });
             });
-            
+
             $("#closeAboutImgBtn").click(function () {
                 $("#aboutMap").animate({ height: '0px', opacity: '0.0', margin: '0px 0px 10px 0px' });
             });
@@ -499,9 +480,9 @@
     </div>
     <div id="home">
         <div id="banner">
-        <div style="width: 100%;position: absolute;float: right;">
+        <!--<div style="width: 100%;position: absolute;float: right;">
                 <span style="float: right;"><a id="closeBannerImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
-            </div>
+            </div>-->
         <div class="section">
         </div>
     </div>
@@ -515,7 +496,7 @@
                 <dt class="icowaibu"></dt>
                 <dd>
                     <h3>
-                        <a href="javascript:popupBox('notic1')">市民点餐用手机替代“服务员”</a></h3>
+                        <a href="javascript:popupBox('notic1','1')">市民点餐用手机替代“服务员”</a></h3>
                     “我和朋友到餐厅吃饭，看到桌上有张宣传单，上面印着二维码和点餐方法，我们尝试着点了几个菜，随后服务员上前确认。”昨日，市民姚毅告诉记者，城区... <a href="javascript:popupBox('notic1')"
                         style="font-size: 9px;">>></a>
                 </dd>
@@ -524,7 +505,7 @@
                 <dt class="icofabu"></dt>
                 <dd>
                     <h3>
-                        <a href="javascript:popupBox('notic2')">欢迎光临本公司的网站</a></h3>
+                        <a href="javascript:popupBox('notic2','1')">欢迎光临本公司的网站</a></h3>
                     本公司主要从事计算机信息科技领域内软硬件技术开发、是从事硬件与软件相结合的研发设计高新技术企业，公司主要产品包括外勤人员管理考勤记录仪... <a href="javascript:popupBox('notic2')"
                         style="font-size: 9px;">>></a>
                 </dd>
@@ -535,17 +516,17 @@
             </div>
             <div id="roll_box" style="height: 180px; overflow: hidden; margin-left: 20px; margin-top: 20px;">
                 <div id="roll_content" style="margin-left: 20px;">
-                    <li><a href="javascript:popupBox('news1');" target="_blank">亿创阁E食通的相关媒体报道</a><span style="float:right">2014-06-25</span></li>
-                    <li><a href="javascript:popupBox('news2');" target="_blank">胖妹土家菜馆加大二维码点餐的宣传力度</a><span style="float:right">2014-05-03</span></li>
-                    <li><a href="javascript:popupBox('news3');" target="_blank">手机扫一扫，享受时尚点餐方式。</a><span style="float:right">2014-04-26</span></li>
-                    <li><a href="javascript:popupBox('news4');" target="_blank">引领时尚点餐（扫二维码）</a><span style="float:right">2014-03-29</span></li>
-                    <li><a href="javascript:popupBox('news5');" target="_blank">如何解决企业外勤团队管理难的问题？</a><span style="float:right">2013-11-30</span></li>
-                    <li><a href="javascript:popupBox('news6');" target="_blank">外勤人员移动考勤是怎么为企业创造价值的？</a><span style="float:right">2013-11-30</span></li>
-                    <li><a href="javascript:popupBox('news7');" target="_blank">E勤通在企事业单位发展的应用</a><span style="float:right">2013-11-30</span></li>
-                    <li><a href="javascript:popupBox('news8');" target="_blank">如何管理移动外勤团队？</a><span style="float:right">2013-11-30</span></li>
-                    <li><a href="javascript:popupBox('news9');" target="_blank">外勤人员管理E勤通系统经典应用案例二</a><span style="float:right">2013-11-30</span></li>
-                    <li><a href="javascript:popupBox('news10');" target="_blank">亿创阁的历程和未来</a><span style="float:right">2011-11-27</span></li>
-                    <li><a href="javascript:popupBox('news11');" target="_blank">省领导来我公司视察</a><span style="float:right">2010-07-18</span></li>
+                    <li><a href="javascript:popupBox('news1','0');" >亿创阁E食通的相关媒体报道</a><span style="float:right">2014-06-25</span></li>
+                    <li><a href="javascript:popupBox('news2','0');" >胖妹土家菜馆加大二维码点餐的宣传力度</a><span style="float:right">2014-05-03</span></li>
+                    <li><a href="javascript:popupBox('news3','0');" >手机扫一扫，享受时尚点餐方式。</a><span style="float:right">2014-04-26</span></li>
+                    <li><a href="javascript:popupBox('news4','0');" >引领时尚点餐（扫二维码）</a><span style="float:right">2014-03-29</span></li>
+                    <li><a href="javascript:popupBox('news5','0');" >如何解决企业外勤团队管理难的问题？</a><span style="float:right">2013-11-30</span></li>
+                    <li><a href="javascript:popupBox('news6','0');" >外勤人员移动考勤是怎么为企业创造价值的？</a><span style="float:right">2013-11-30</span></li>
+                    <li><a href="javascript:popupBox('news7','0');" >E勤通在企事业单位发展的应用</a><span style="float:right">2013-11-30</span></li>
+                    <li><a href="javascript:popupBox('news8','0');" >如何管理移动外勤团队？</a><span style="float:right">2013-11-30</span></li>
+                    <li><a href="javascript:popupBox('news9','0');" >外勤人员管理E勤通系统经典应用案例二</a><span style="float:right">2013-11-30</span></li>
+                    <li><a href="javascript:popupBox('news10','0');" >亿创阁的历程和未来</a><span style="float:right">2011-11-27</span></li>
+                    <li><a href="javascript:popupBox('news11','0');" >省领导来我公司视察</a><span style="float:right">2010-07-18</span></li>
                 </div>
                 <div id="roll_temp" style="margin-left: 20px;">
                 </div>
@@ -603,9 +584,9 @@
     </div>
     <div id="case">
         <div class="map" id="caseMap">
-            <div style="width: 100%;position: absolute;float: right;">
+            <!--<div style="width: 100%;position: absolute;float: right;">
                 <span style="float: right;"><a id="closeCaseImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
-            </div>
+            </div>-->
             <div class="section">
             </div>
         </div>
@@ -718,9 +699,9 @@
     </div>
     <div id="about">
         <div class="map" id="aboutMap">
-            <div style="width: 100%;position: absolute;float: right;">
+            <!--<div style="width: 100%;position: absolute;float: right;">
                 <span style="float: right;"><a id="closeAboutImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
-            </div>
+            </div>-->
             <div class="section">
             </div>
         </div>
@@ -900,7 +881,7 @@
     </div>
 
     <!-- 在线客服 -->
-    <div id="KeFuDiv" class="KeFuDiv" style="top: 327px; left: 127px; position: absolute;">
+    <div id="KeFuDiv" class="KeFuDiv" style="top: 327px; left: 155px; position: absolute;">
 	    <div>
 		    <img src="./YCG_files/img/up_001.gif" height="55" border="0" usemap="#Map" style="cursor:move;" onmousedown="MoveDiv(KeFuDiv,event);" title="拖动">
 		    <map name="Map" id="Map1">
@@ -914,7 +895,7 @@
 			    <a target="_blank" href="tencent://message/?uin=317868558&amp;Site=&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:17905772:3" alt="有事点这里"></a>
 		    </div>
 		    <div class="KeFuItem">
-			    <a target="_blank" href="tencent://message/?uin=3178685582&amp;Site=&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:17905772:2" alt="有事点这里"></a>
+			    <a target="_blank" href="tencent://message/?uin=317868558&amp;Site=&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:17905772:2" alt="有事点这里"></a>
 		    </div>
 	    </div>
 
