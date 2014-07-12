@@ -265,6 +265,13 @@
                 $("#aboutMap").animate({ height: '0px', opacity: '0.0', margin: '0px 0px 10px 0px' });
             });
         });
+
+        function addOnlineUseBg() {
+            $("#onlineUseDiv").addClass("onlineUseBg");
+        }
+        function removeOnlineUseBg() {
+            $("#onlineUseDiv").removeClass("onlineUseBg");
+        }
     </script>
 </head>
 <body>
@@ -381,15 +388,16 @@
     </div>
     <div id="case">
         <div class="map" id="caseMap">
-            <div style=" 
+            <div id="onlineUseDiv" style=" 
                     cursor:pointer;
-                    background-image: url('./YCG_files/img/onlineUse.png');
                     position: absolute;
                     margin-left: 690px;
-                    background-color: green;
                     margin-top: 310px;
                     width: 148px;
-                    height: 48px;" title="点击进入e食通网络体验版" onclick="javascript:window.open('http://ycg01.3322.org/restaurant/index.jsp?boaid=201','','');"></div>
+                    height: 48px;" title="点击进入e食通网络体验版"
+                    onmouseover="javascript:addOnlineUseBg()"
+                    onmouseout="javascript:removeOnlineUseBg()"
+                    onclick="javascript:window.open('http://ycg01.3322.org/restaurant/index.jsp?boaid=201','','');"></div>
             <!--<div style="width: 100%;position: absolute;float: right;">
                 <span style="float: right;"><a id="closeCaseImgBtn" style="cursor:pointer;"><img src="./YCG_files/img/closeimg.png" alt="关闭" /></a></span>
             </div>-->
